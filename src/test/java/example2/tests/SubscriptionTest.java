@@ -1,8 +1,8 @@
 package example2.tests;
 
+import all.utils.GenerateDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import all.utils.GenerateDriverAll;
 import all.utils.JsonUtils;
 import example2.actions.Actions;
 import org.openqa.selenium.WebDriver;
@@ -26,7 +26,7 @@ public class SubscriptionTest {
         String URL_FOR_SUBSCRIPTION = JsonUtils.readJsonFromFile("url_for_subscription");
         String BROWSER = JsonUtils.readJsonFromFile("browser");
         logger.info("WebDriver setup complete: {}, {}", BROWSER, URL_FOR_SUBSCRIPTION);
-        driver = GenerateDriverAll.initDriver(BROWSER, URL_FOR_SUBSCRIPTION);
+        driver = GenerateDriver.initDriver(BROWSER, URL_FOR_SUBSCRIPTION);
         actions = new Actions(driver);
     }
 
@@ -49,7 +49,7 @@ public class SubscriptionTest {
      */
     @AfterSuite(description = "cleaning up the test environment", alwaysRun = true)
     public void tearDown() {
-        GenerateDriverAll.cleanDriver(driver);
+        GenerateDriver.cleanDriver(driver);
         logger.info("Registration form positive test ended.");
     }
 }

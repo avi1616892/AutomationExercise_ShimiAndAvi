@@ -1,6 +1,6 @@
 package example2.tests;
 
-import all.utils.GenerateDriverAll;
+import all.utils.GenerateDriver;
 import all.utils.JsonUtils;
 import example2.actions.Actions;
 import org.openqa.selenium.WebDriver;
@@ -21,7 +21,7 @@ public class ForgotPasswordTests {
     public void setUp() {
         String URL = JsonUtils.readJsonFromFile("url");
         String BROWSER = JsonUtils.readJsonFromFile("browser");
-        driver = GenerateDriverAll.initDriver(BROWSER, URL);
+        driver = GenerateDriver.initDriver(BROWSER, URL);
         actions = new Actions(driver);
     }
 
@@ -38,6 +38,6 @@ public class ForgotPasswordTests {
      */
     @AfterSuite(alwaysRun = true)
     public void tearDown() {
-        GenerateDriverAll.cleanDriver(driver);
+        GenerateDriver.cleanDriver(driver);
     }
 }

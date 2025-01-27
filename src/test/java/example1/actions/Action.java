@@ -16,6 +16,5 @@ public class Action {
         login.setPassword("Password123");
         login.clickSubmit();
         return (login.validateLogin());
-
     }
 }

@@ -1,6 +1,5 @@
 package example1.tests;
 
-import all.utils.GenerateDriverAll;
 import example1.actions.Action;
 import example1.utils.GenerateDriver;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +13,7 @@ public class SuiteLoginTests {
 
     @BeforeSuite
     public void setUp()  {
-        driver = GenerateDriverAll.initDriver("chrome", "https://practicetestautomation.com/practice-test-login/");
+        //driver = GenerateDriverAll.initDriver("chrome", "https://practicetestautomation.com/practice-test-login/");
         actions = new Action(driver);
     }
 

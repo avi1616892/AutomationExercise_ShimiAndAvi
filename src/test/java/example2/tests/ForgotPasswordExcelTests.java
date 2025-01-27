@@ -1,6 +1,6 @@
 package example2.tests;
 
-import all.utils.GenerateDriverAll;
+import all.utils.GenerateDriver;
 import all.utils.JsonUtils;
 import example2.actions.Actions;
 import org.openqa.selenium.WebDriver;
@@ -23,7 +23,7 @@ public class ForgotPasswordExcelTests {
      */
     @BeforeSuite(alwaysRun = true)
     public void setUp() {
-        driver = GenerateDriverAll.initDriver(BROWSER, URL);
+        driver = GenerateDriver.initDriver(BROWSER, URL);
         actions = new Actions(driver);
     }
 
@@ -45,6 +45,6 @@ public class ForgotPasswordExcelTests {
      */
     @AfterSuite(alwaysRun = true)
     public void tearDown() {
-        GenerateDriverAll.cleanDriver(driver);
+        GenerateDriver.cleanDriver(driver);
     }
 }

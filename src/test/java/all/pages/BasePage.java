@@ -20,7 +20,6 @@ public class BasePage {
     WebDriverWait wait;
     Actions actions;
 
-
     /**
      * Constructor to initialize the WebDriver and WebDriverWait.
      *
@@ -116,4 +115,18 @@ public class BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
+    public boolean isElementDisplayed(By locator){
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            return true;
+        } catch (Exception e){
+            return false;
+        }
+    }
+
+    public String getElementAttributeUsingJS(By locator, String attribute) {
+        WebElement element = driver.findElement(locator);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        return (String) js.executeScript("return arguments[0].getAttribute(arguments[1]);", element, attribute);
+    }
 }
