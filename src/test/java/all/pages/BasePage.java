@@ -83,7 +83,6 @@ public class BasePage {
         return driver.getTitle().equals(title);
     }
 
-
     /**
      * Retrieves the text content of the element located by the given locator.
      *

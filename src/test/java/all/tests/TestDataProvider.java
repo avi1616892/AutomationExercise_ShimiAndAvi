@@ -1,4 +1,4 @@
-package example2.tests;
+package all.tests;
 
 import org.testng.annotations.DataProvider;
 import all.utils.ExcelUtils;
@@ -7,7 +7,7 @@ import java.util.List;
 
 public class TestDataProvider {
 
-    @DataProvider(name = "excelData")
+    @DataProvider(name = "emailData")
     public Object[][] getData() {
         List<List<String>> excelData = ExcelUtils.readExcelFile("./Data.xlsx");
         Object[][] data = new Object[excelData.size()][];

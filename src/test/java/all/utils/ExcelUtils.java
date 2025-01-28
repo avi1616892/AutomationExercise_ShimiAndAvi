@@ -1,6 +1,5 @@
 package all.utils;
 
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -24,7 +23,6 @@ public class ExcelUtils {
             boolean isFirstRow = true;
 
             for (Row row : sheet) {
-                // Skip the first row (header row)
                 if (isFirstRow) {
                     isFirstRow = false;
                     continue;
@@ -54,6 +52,5 @@ public class ExcelUtils {
 
         return data;
     }
-
 
 }

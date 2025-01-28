@@ -17,15 +17,26 @@ public class HomePage extends BasePage {
         click(By.xpath("//a[@href=\"/login\"]"));
     }
 
-    public boolean verifySignUpLoginPage() {
-        boolean login = validateElementExist(By.xpath("//h2[text()='Login to your account']"));
-        boolean signUp = validateElementExist(By.xpath("//h2[text()='New User Signup!']"));
-        return login && signUp;
-    }
-
     public void clickLogout() {
         click(By.xpath("//a[@href='/logout']"));
     }
+
+    public void clickCart() {
+        click(By.xpath("//*[text()=' Cart']"));
+    }
+
+    public void verifyCategoriesInLeftSidebar() {
+        validateElementExist(By.xpath("//div[@class='left-sidebar']//h2[text()='Category']"));
+    }
+
+    public void clickWomanCategory() {
+        click(By.xpath("//a[@data-toggle='collapse' and @href='#Women']"));
+    }
+
+    public void clickDressSubCategory() {
+        click(By.xpath("//a[@href='/category_products/1']"));
+    }
+
 }
 
 

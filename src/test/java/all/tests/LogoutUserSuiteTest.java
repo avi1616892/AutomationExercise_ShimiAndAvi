@@ -1,8 +1,8 @@
 package all.tests;
 
 import all.actions.Actions;
+import all.utils.GenerateDriver;
 import all.utils.JsonUtils;
-import example1.utils.GenerateDriver;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
@@ -11,25 +11,30 @@ import org.testng.annotations.Test;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class LogOutSuiteTest {
+public class LogoutUserSuiteTest {
 
-    private static final Logger logger = LogManager.getLogger(LogOutSuiteTest.class);
+    private static final Logger logger = LogManager.getLogger(LogoutUserSuiteTest.class);
     WebDriver driver;
     Actions actions;
 
+    // Configuration variables
     String URL = JsonUtils.readJsonFromFile("url");
     String BROWSER = JsonUtils.readJsonFromFile("browser");
 
+    /**
+     * Sets up the test environment before running the suite.
+     * Initializes WebDriver and Actions instance.
+     */
     @BeforeSuite
     public void setUp() {
-        driver = all.utils.GenerateDriver.initDriver(BROWSER, URL);
+        driver = GenerateDriver.initDriver(BROWSER, URL);
         actions = new Actions(driver);
     }
 
     /**
-      Testing Verify that home page is visible successfully.
+     * Verify that the home page is visible successfully.
      */
-    @Test(priority = 1, description = "testing the Home page", groups = {"smoke", "registration_User"})
+    @Test(priority = 1, description = "Testing the visibility of the Home page", groups = {"regression", "LogOutUser"})
     public void verifyHomePage() {
         boolean result = actions.verifyHomePage();
         if (result) {
@@ -41,11 +46,11 @@ public class LogOutSuiteTest {
     }
 
     /**
-     * Testing Verify that 'Login to your account' is visible successfully.
+     * Verify that 'Login to your account' is visible successfully.
      */
-    @Test(priority = 2, description = "Testing the visibility of 'Login to your account' message", groups = {"smoke", "login"})
+    @Test(priority = 2, description = "Testing the visibility of 'Login to your account' message", groups = {"regression", "LogOutUser"})
     public void verifyLoginToYourAccount() {
-        boolean result = actions.verifyLoginPage();
+        boolean result = actions.verifySignUpLoginPage();
         if (result) {
             logger.info("'Login to your account' is visible, test passed.");
         } else {
@@ -55,28 +60,25 @@ public class LogOutSuiteTest {
     }
 
     /**
-     * Testing Verify that 'Logged in as username' is visible successfully.
+     * Verify that 'Logged in as username' is visible successfully.
      */
-    @Test(priority = 3, description = "Testing the visibility of 'Logged in as username' message", groups = {"smoke", "login"})
+    @Test(priority = 3, description = "Testing the visibility of 'Logged in as username' message", groups = {"regression", "LogOutUser"})
     public void verifyLoggedInAsUsername() {
         String username = JsonUtils.readJsonFromFile("valid_name");
         boolean result = actions.verifyLoggedInAsUserName(username);
 
         if (result) {
-            logger.info("'Logged in as " + username + "' is visible, test passed.");
+            logger.info("'Logged in as {}' is visible, test passed.", username);
         } else {
-            logger.error("'Logged in as " + username + "' is not visible, test failed.");
+            logger.error("'Logged in as {}' is not visible, test failed.", username);
         }
         Assert.assertTrue(result, "'Logged in as " + username + "' is not visible.");
     }
 
     /**
-     * This test case verifies that the user has successfully navigated to the login page.
-     * It checks the behavior when the user tries to log in or accesses the login page.
-     *
-     * It will assert that the login page is displayed correctly by using the verifyNavigatedToLoginPage method.
+     * Verify that the user is navigated to the login page successfully.
      */
-    @Test(priority = 4, description = "Verify that user is navigated to login page", groups = {"smoke", "login"})
+    @Test(priority = 4, description = "Verify that user is navigated to the login page", groups = {"regression", "LogOutUser"})
     public void verifyUserNavigatedToLoginPage() {
         boolean result = actions.verifyNavigatedToLoginPage();
 
@@ -88,6 +90,10 @@ public class LogOutSuiteTest {
         Assert.assertTrue(result, "User is not navigated to the login page.");
     }
 
+    /**
+     * Cleans up resources after the suite execution is complete.
+     * Quits WebDriver.
+     */
     @AfterSuite
     public void tearDown() {
         GenerateDriver.cleanDriver(driver);
